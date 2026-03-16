@@ -14,36 +14,29 @@
 
 from setuptools import setup
 from io import open
-from paddleocr import VERSION
 
-def load_requirements(file_list=None):
-    if file_list is None:
-        file_list = ['requirements.txt']
-    if isinstance(file_list,str):
-        file_list = [file_list]
-    requirements = []
-    for file in file_list:
-        with open(file, encoding="utf-8-sig") as f:
-            requirements.extend(f.readlines())
-    return requirements
+with open('requirements.txt', encoding="utf-8-sig") as f:
+    requirements = f.readlines()
+    requirements.append('tqdm')
 
 
 def readme():
-    with open('doc/doc_en/whl_en.md', encoding="utf-8-sig") as f:
+    with open('README.md', encoding="utf-8-sig") as f:
         README = f.read()
     return README
 
 
 setup(
-    name='paddleocr',
-    packages=['paddleocr'],
-    package_dir={'paddleocr': ''},
+    name='PPOCRLabel',
+    packages=['PPOCRLabel'],
+    package_data = {'PPOCRLabel': ['libs/*','resources/strings/*','resources/icons/*']},
+    package_dir={'PPOCRLabel': ''},
     include_package_data=True,
-    entry_points={"console_scripts": ["paddleocr= paddleocr.paddleocr:main"]},
-    version=VERSION,
-    install_requires=load_requirements(['requirements.txt', 'ppstructure/recovery/requirements.txt']),
+    entry_points={"console_scripts": ["PPOCRLabel= PPOCRLabel.PPOCRLabel:main"]},
+    version='2.1.3',
+    install_requires=requirements,
     license='Apache License 2.0',
-    description='Awesome OCR toolkits based on PaddlePaddle (8.6M ultra-lightweight pre-trained model, support training and deployment among server, mobile, embeded and IoT devices)',
+    description='PPOCRLabelv2 is a semi-automatic graphic annotation tool suitable for OCR field, with built-in PP-OCR model to automatically detect and re-recognize data. It is written in Python3 and PyQT5, supporting rectangular box, table, irregular text and key information annotation modes. Annotations can be directly used for the training of PP-OCR detection and recognition models.',
     long_description=readme(),
     long_description_content_type='text/markdown',
     url='https://github.com/PaddlePaddle/PaddleOCR',
@@ -53,12 +46,7 @@ setup(
     ],
     classifiers=[
         'Intended Audience :: Developers', 'Operating System :: OS Independent',
-        'Natural Language :: Chinese (Simplified)',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Natural Language :: English',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7', 'Topic :: Utilities'
     ], )
