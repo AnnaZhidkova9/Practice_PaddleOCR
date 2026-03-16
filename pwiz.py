@@ -1,4 +1,4 @@
-#!C:\Studies\Practice1\venv\Scripts\python.exe
+#!/usr/bin/env python
 
 import datetime
 import os
