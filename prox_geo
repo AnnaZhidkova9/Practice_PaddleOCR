@@ -1,0 +1,5 @@
+#!C:\Studies\Practice1\venv\Scripts\python.exe
+from prox.prox_geo import main
+
+if __name__ == '__main__':
+    main()
